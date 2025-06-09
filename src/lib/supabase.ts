@@ -705,9 +705,23 @@ export const adminUploadContracts = async (contractData: any[]) => {
           contract.keywords = contract.keywords.split(',').map((k: string) => k.trim()).filter(Boolean);
         }
 
+        // Clean up numeric fields
+        const cleanContract = {
+          ...contract,
+          budget_min: contract.budget_min ? parseFloat(contract.budget_min) : null,
+          budget_max: contract.budget_max ? parseFloat(contract.budget_max) : null,
+          award_value: contract.award_value ? parseFloat(contract.award_value) : null,
+          // Ensure dates are properly formatted or null
+          award_date: contract.award_date && contract.award_date !== '' ? contract.award_date : null,
+          start_date: contract.start_date && contract.start_date !== '' ? contract.start_date : null,
+          current_expiration_date: contract.current_expiration_date && contract.current_expiration_date !== '' ? contract.current_expiration_date : null,
+          ultimate_expiration_date: contract.ultimate_expiration_date && contract.ultimate_expiration_date !== '' ? contract.ultimate_expiration_date : null,
+          response_deadline: contract.response_deadline && contract.response_deadline !== '' ? contract.response_deadline : null,
+        };
+
         const { error } = await supabase
           .from('contracts')
-          .insert([contract]);
+          .insert([cleanContract]);
 
         if (error) {
           errors.push(`Error inserting contract ${contract.title}: ${error.message}`);
