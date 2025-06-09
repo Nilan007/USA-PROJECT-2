@@ -261,7 +261,7 @@ export default function LoginForm() {
               {(activeTab === 'signup' || activeTab === 'demo') && (
                 <>
                   <div>
-                    <label htmlFor="fullName\" className="block text-sm font-medium text-gray-700 mb-2">
+                    <label htmlFor="fullName" className="block text-sm font-medium text-gray-700 mb-2">
                       Full Name *
                     </label>
                     <input
@@ -446,13 +446,6 @@ export default function LoginForm() {
                 </div>
               )}
             </div>
-
-            {/* Demo Credentials for Testing */}
-            {activeTab === 'login' && (
-              <div className="mt-6 p-4 bg-gray-50 rounded-lg">
-                </div>
-              </div>
-            )}
           </div>
         </div>
       </div>
