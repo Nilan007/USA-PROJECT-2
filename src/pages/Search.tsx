@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { 
-  Search, Brain, Filter, Download, Heart, Calendar, 
+  Search as SearchIcon, Brain, Filter, Download, Heart, Calendar, 
   Building, MapPin, DollarSign, Clock, User, FileText,
   ExternalLink, Tag, AlertCircle, TrendingUp, Users,
   Shield, Award, Target, Zap, Lightbulb, Star, ChevronDown,
