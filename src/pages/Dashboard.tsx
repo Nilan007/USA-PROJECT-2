@@ -33,18 +33,20 @@ export default function Dashboard() {
 
   const fetchDashboardStats = async () => {
     try {
-      // Fetch opportunities stats
-      const { data: opportunities, error: oppError } = await supabase
-        .from('opportunities')
-        .select('opportunity_type, budget_min, budget_max')
+      // Fetch contracts stats (replacing opportunities)
+      const { data: contracts, error: contractError } = await supabase
+        .from('contracts')
+        .select('contract_type, budget_min, budget_max, award_value')
         .eq('status', 'active');
 
-      if (oppError) throw oppError;
+      if (contractError) throw contractError;
 
-      const totalOpportunities = opportunities?.length || 0;
-      const federalOpportunities = opportunities?.filter(o => o.opportunity_type === 'federal').length || 0;
-      const stateOpportunities = opportunities?.filter(o => o.opportunity_type === 'state').length || 0;
-      const totalValue = opportunities?.reduce((sum, o) => sum + (o.budget_max || 0), 0) || 0;
+      const totalOpportunities = contracts?.length || 0;
+      const federalOpportunities = contracts?.filter(c => c.contract_type === 'federal').length || 0;
+      const stateOpportunities = contracts?.filter(c => c.contract_type === 'state').length || 0;
+      const totalValue = contracts?.reduce((sum, c) => {
+        return sum + (c.award_value || c.budget_max || 0);
+      }, 0) || 0;
 
       let totalUsers = 0;
       let activeSubscriptions = 0;
@@ -94,7 +96,7 @@ export default function Dashboard() {
 
   const userStatsCards = [
     {
-      title: 'Active Opportunities',
+      title: 'Active Contracts',
       value: stats.totalOpportunities,
       change: '+12%',
       changeType: 'increase' as const,
@@ -153,7 +155,7 @@ export default function Dashboard() {
       color: 'purple' as const
     },
     {
-      title: 'Total Opportunities',
+      title: 'Total Contracts',
       value: stats.totalOpportunities,
       change: '+9%',
       changeType: 'increase' as const,

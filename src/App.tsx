@@ -10,6 +10,7 @@ import Subscription from './pages/Subscription';
 import AdminDashboard from './pages/AdminDashboard';
 import FavoritesList from './components/User/FavoritesList';
 import PipelineManager from './components/User/PipelineManager';
+import Search from './pages/Search';
 
 function AppRoutes() {
   const { user, loading } = useAuth();
@@ -38,8 +39,8 @@ function AppRoutes() {
           <div className="max-w-2xl mx-auto text-center">
             <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-8">
               <div className="flex items-center justify-center w-16 h-16 bg-yellow-100 rounded-full mx-auto mb-4">
-                <svg className="w-8 h-8 text-yellow-600\" fill="none\" stroke="currentColor\" viewBox="0 0 24 24">
-                  <path strokeLinecap="round\" strokeLinejoin="round\" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.732-.833-2.5 0L4.314 16.5c-.77.833.192 2.5 1.732 2.5z" />
+                <svg className="w-8 h-8 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.732-.833-2.5 0L4.314 16.5c-.77.833.192 2.5 1.732 2.5z" />
                 </svg>
               </div>
               <h1 className="text-2xl font-bold text-gray-900 mb-4">
@@ -83,7 +84,7 @@ function AppRoutes() {
       <Layout>
         <Routes>
           <Route path="/subscription" element={<Subscription />} />
-          <Route path="*" element={<Navigate to="/subscription\" replace />} />
+          <Route path="*" element={<Navigate to="/subscription" replace />} />
         </Routes>
       </Layout>
     );
@@ -93,7 +94,7 @@ function AppRoutes() {
   return (
     <Layout>
       <Routes>
-        <Route path="/" element={<Navigate to="/dashboard\" replace />} />
+        <Route path="/" element={<Navigate to="/dashboard" replace />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/contracts" element={<Contracts />} />
         <Route path="/opportunities" element={<Contracts />} />
@@ -101,6 +102,7 @@ function AppRoutes() {
         <Route path="/subscription" element={<Subscription />} />
         <Route path="/favorites" element={<FavoritesList />} />
         <Route path="/pipeline" element={<PipelineManager />} />
+        <Route path="/search" element={<Search />} />
         
         {/* Admin Routes */}
         <Route path="/admin" element={<Dashboard />} />
@@ -114,8 +116,7 @@ function AppRoutes() {
         <Route path="/admin/settings" element={<div className="p-6"><h1 className="text-2xl font-bold">System Settings</h1><p className="mt-2 text-gray-600">Configure system-wide settings and preferences.</p></div>} />
         
         {/* User Routes */}
-        <Route path="/map" element={<div className="p-6"><h1 className="text-2xl font-bold">Map View</h1><p className="mt-2 text-gray-600">Interactive map showing contract opportunities by state.</p></div>} />
-        <Route path="/search" element={<div className="p-6"><h1 className="text-2xl font-bold">Advanced Search</h1><p className="mt-2 text-gray-600">Powerful search capabilities with AI assistance.</p></div>} />
+        <Route path="/map" element={<div className="p-6"><h1 className="text-2xl font-bold">Statewise - IQ</h1><p className="mt-2 text-gray-600">Interactive map showing contract opportunities by state.</p></div>} />
       </Routes>
     </Layout>
   );

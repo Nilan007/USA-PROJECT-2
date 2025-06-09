@@ -16,7 +16,8 @@ import {
   GitBranch,
   Upload,
   FolderOpen,
-  Bell
+  Bell,
+  Brain
 } from 'lucide-react';
 
 export default function Sidebar() {
@@ -26,12 +27,12 @@ export default function Sidebar() {
   const userNavigation = [
     { name: 'Dashboard', href: '/dashboard', icon: LayoutDashboard },
     { name: 'Contracts', href: '/contracts', icon: FolderOpen },
+    { name: 'FED IQ - AI Search', href: '/search', icon: Brain },
     { name: 'Contacts', href: '/contacts', icon: Users },
     { name: 'Favorites', href: '/favorites', icon: Heart },
     { name: 'Pipeline', href: '/pipeline', icon: GitBranch },
     { name: 'Subscription', href: '/subscription', icon: CreditCard },
-    { name: 'Map View', href: '/map', icon: Map },
-    { name: 'Search', href: '/search', icon: Search },
+    { name: 'Statewise - IQ', href: '/map', icon: Map },
   ];
 
   const adminNavigation = [
